@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Listings;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\Promise\all;
+
 class ListingsController extends Controller
 {
     /**
@@ -42,7 +44,10 @@ class ListingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Listings::create($request->all());
+
+        return redirect()->route('listing.index')
+            ->with('success', 'Offer was created!');
     }
 
     /**

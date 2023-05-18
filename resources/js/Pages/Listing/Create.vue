@@ -3,42 +3,42 @@
         <div>
             <div>
                 <label>Beds</label>
-                <input type="text" />
+                <input v-model.number="newHome.beds" type="text" />
             </div>
 
             <div>
                 <label>Baths</label>
-                <input type="text" />
+                <input v-model.number="newHome.baths" type="text" />
             </div>
 
             <div>
                 <label>Area</label>
-                <input type="text" />
+                <input v-model.number="newHome.area" type="text" />
             </div>
 
             <div>
                 <label>City</label>
-                <input type="text" />
+                <input v-model="newHome.city" type="text" />
             </div>
 
             <div>
                 <label>Post Code</label>
-                <input type="text" />
+                <input v-model="newHome.code" type="text" />
             </div>
 
             <div>
                 <label>Street</label>
-                <input type="text" />
+                <input v-model="newHome.street" type="text" />
             </div>
 
             <div>
                 <label>Street Nr</label>
-                <input type="text" />
+                <input v-model.number="newHome.street_nr" type="text" />
             </div>
 
             <div>
                 <label>Price</label>
-                <input type="text" />
+                <input v-model.number="newHome.price" type="text" />
             </div>
 
             <div>
@@ -48,7 +48,24 @@
     </form>
 </template>
 
-<script setup></script>
+<script setup>
+import { useForm } from "@inertiajs/vue3";
+
+const newHome = useForm({
+    beds: 0,
+    baths: 0,
+    area: 0,
+    city: null,
+    code: null,
+    street: null,
+    street_nr: null,
+    price: 0,
+});
+
+const create = () => {
+    newHome.post("/listing");
+};
+</script>
 
 <style scoped>
 label {
