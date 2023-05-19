@@ -1,13 +1,13 @@
 <template>
     <div>
-        <app-home-address :home="home"></app-home-address>
+        <app-home-info :home="home"></app-home-info>
         <Link :href="route('listing.index')">Go Back</Link>
     </div>
 </template>
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import AppHomeAddress from "@/Components/AppHomeAddress.vue";
+import AppHomeInfo from "@/Components/AppHomeInfo.vue";
 
 defineProps({
     home: {

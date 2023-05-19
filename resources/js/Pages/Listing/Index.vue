@@ -1,19 +1,27 @@
 <template>
     <div>
-        <h1>All homes for sale:</h1>
-        <ul>
+        <h1
+            class="mt-8 mb-8 text-2xl font-bold text-gray-400 dark:text-gray-500"
+        >
+            All homes for sale:
+        </h1>
+        <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             <li v-for="home in homes" @key="home.id">
-                <app-home-address :home="home"></app-home-address>
-                <div class="actions">
-                    <Link :href="route('listing.show', home.id)">Details</Link>
-                    <Link :href="route('listing.edit', home.id)">Edit</Link>
-                    <Link
-                        :href="route('listing.destroy', home.id)"
-                        method="delete"
-                        as="button"
-                        >Delete</Link
-                    >
-                </div>
+                <app-card>
+                    <app-home-info :home="home"></app-home-info>
+                    <div class="actions">
+                        <Link :href="route('listing.show', home.id)"
+                            >Details</Link
+                        >
+                        <Link :href="route('listing.edit', home.id)">Edit</Link>
+                        <Link
+                            :href="route('listing.destroy', home.id)"
+                            method="delete"
+                            as="button"
+                            >Delete</Link
+                        >
+                    </div>
+                </app-card>
             </li>
         </ul>
     </div>
@@ -21,7 +29,8 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import AppHomeAddress from "@/Components/AppHomeAddress.vue";
+import AppHomeInfo from "@/Components/AppHomeInfo.vue";
+import AppCard from "@/Components/UI/AppCard.vue";
 
 defineProps({
     homes: {
@@ -31,10 +40,3 @@ defineProps({
     },
 });
 </script>
-
-<style scoped>
-.actions {
-    display: flex;
-    gap: 20px;
-}
-</style>

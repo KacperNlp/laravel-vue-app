@@ -33,7 +33,7 @@
             </button>
         </div>
     </header>
-    <main class="container mx-auto">
+    <main class="container mx-auto px-5 md:px-0">
         <div v-if="isVisible" class="success">
             {{ successMessage }}
         </div>
@@ -89,7 +89,6 @@ const hideSuccessMessage = () => {
 
 const toggleNavForMobile = () => {
     isNavigationActive.value = !isNavigationActive.value;
-    console.log(isNavigationActive.value);
 };
 </script>
 
