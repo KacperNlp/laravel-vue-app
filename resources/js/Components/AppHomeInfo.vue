@@ -9,24 +9,18 @@
         </div>
         <p class="pb-2">City: {{ home.city }}</p>
         <p>
-            Price: <strong>${{ getPrice }}</strong>
+            Price: <strong><app-price :price="home.price"></app-price></strong>
         </p>
     </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
+import AppPrice from "@/Components/UI/AppPrice.vue";
 
 const props = defineProps({
     home: {
         type: Object,
         required: true,
     },
-});
-
-const getPrice = computed(() => {
-    let price = props.home.price.toString().split(".");
-    price[0] = price[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    return price.join(",");
 });
 </script>

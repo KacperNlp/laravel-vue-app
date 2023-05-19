@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1
-            class="mt-8 mb-8 text-2xl font-bold text-gray-400 dark:text-gray-500"
+            class="mt-8 mb-8 text-2xl font-bold text-gray-500 dark:text-gray-400"
         >
             All homes for sale:
         </h1>
