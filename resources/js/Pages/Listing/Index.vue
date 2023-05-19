@@ -4,7 +4,16 @@
         <ul>
             <li v-for="home in homes" @key="home.id">
                 <app-home-address :home="home"></app-home-address>
-                <Link :href="`/listing/${home.id}`">Details</Link>
+                <div class="actions">
+                    <Link :href="route('listing.show', home.id)">Details</Link>
+                    <Link :href="route('listing.edit', home.id)">Edit</Link>
+                    <Link
+                        :href="route('listing.destroy', home.id)"
+                        method="delete"
+                        as="button"
+                        >Delete</Link
+                    >
+                </div>
             </li>
         </ul>
     </div>
@@ -22,3 +31,10 @@ defineProps({
     },
 });
 </script>
+
+<style scoped>
+.actions {
+    display: flex;
+    gap: 20px;
+}
+</style>

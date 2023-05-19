@@ -44,7 +44,18 @@ class ListingsController extends Controller
      */
     public function store(Request $request)
     {
-        Listings::create($request->all());
+        Listings::create(
+            $request->validate([
+                'beds' => 'required|integer|min:1|max:20',
+                'baths' => 'required|integer|min:1|max:20',
+                'area' => 'required|integer|min:20|max:1500',
+                'city' => 'required',
+                'code' => 'required',
+                'street' => 'required',
+                'street_nr' => 'required|min:1|max:10000',
+                'price' => 'required|integer|min:1'
+            ])
+        );
 
         return redirect()->route('listing.index')
             ->with('success', 'Offer was created!');
@@ -75,7 +86,13 @@ class ListingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $home = Listings::find($id);
+        return inertia(
+            'Listing/Edit',
+            [
+                "home" => $home
+            ]
+        );
     }
 
     /**
@@ -87,7 +104,23 @@ class ListingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $homeToUopdate = Listings::find($id);
+
+        $homeToUopdate->update(
+            $request->validate([
+                'beds' => 'required|integer|min:1|max:20',
+                'baths' => 'required|integer|min:1|max:20',
+                'area' => 'required|integer|min:20|max:1500',
+                'city' => 'required',
+                'code' => 'required',
+                'street' => 'required',
+                'street_nr' => 'required|min:1|max:10000',
+                'price' => 'required|integer|min:1'
+            ])
+        );
+
+        return redirect()->route('listing.index')
+            ->with('success', 'Offer was changed!');
     }
 
     /**
@@ -98,6 +131,8 @@ class ListingsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Listings::where('id', $id)->delete();
+        return redirect()->back()
+            ->with('success', 'Offer was deleted!');
     }
 }

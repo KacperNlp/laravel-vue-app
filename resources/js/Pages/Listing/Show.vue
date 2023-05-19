@@ -1,7 +1,7 @@
 <template>
     <div>
         <app-home-address :home="home"></app-home-address>
-        <Link href="/listing">Go Back</Link>
+        <Link :href="route('listing.index')">Go Back</Link>
     </div>
 </template>
 
