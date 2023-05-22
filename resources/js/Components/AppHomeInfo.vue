@@ -5,7 +5,7 @@
             ><span class="px-2">|</span
             ><span><strong>Baths:</strong> {{ home.baths }}</span
             ><span class="px-2">|</span
-            ><span><strong>Aerea:</strong> {{ home.area }} m²</span>
+            ><span><strong>Area:</strong> {{ home.area }} m²</span>
         </div>
         <p class="pb-2">City: {{ home.city }}</p>
         <p>

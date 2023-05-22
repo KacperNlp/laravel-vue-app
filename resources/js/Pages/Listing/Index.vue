@@ -9,7 +9,7 @@
             <li v-for="home in homes" @key="home.id">
                 <app-card>
                     <app-home-info :home="home"></app-home-info>
-                    <div class="actions">
+                    <div class="flex gap-4 mt-4">
                         <Link :href="route('listing.show', home.id)"
                             >Details</Link
                         >
