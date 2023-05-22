@@ -32,11 +32,7 @@
                 </app-card>
             </div>
         </div>
-        <Link
-            :href="route('listing.index')"
-            class="inline-block mt-8 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-sm text-gray-100 duration-300"
-            >Go Back</Link
-        >
+        <Link :href="route('listing.index')" class="btn-primary">Go Back</Link>
     </div>
 </template>
 

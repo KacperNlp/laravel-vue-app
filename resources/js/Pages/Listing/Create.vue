@@ -1,72 +1,56 @@
 <template>
     <form @submit.prevent="create">
-        <div>
-            <div>
-                <label>Beds</label>
-                <span v-if="newHome.errors.beds" class="error">
-                    {{ newHome.errors.beds }}
-                </span>
-                <input v-model.number="newHome.beds" type="text" />
-            </div>
+        <div class="flex flex-col gap-4 max-w-xl mx-auto">
+            <app-form-element
+                :error="newHome.errors.beds"
+                v-model="newHome.beds"
+                labelText="Beds"
+            ></app-form-element>
 
-            <div>
-                <label>Baths</label>
-                <span v-if="newHome.errors.baths" class="error">
-                    {{ newHome.errors.baths }}
-                </span>
-                <input v-model.number="newHome.baths" type="text" />
-            </div>
+            <app-form-element
+                :error="newHome.errors.baths"
+                v-model="newHome.baths"
+                labelText="Baths"
+            ></app-form-element>
 
-            <div>
-                <label>Area</label>
-                <span v-if="newHome.errors.area" class="error">
-                    {{ newHome.errors.area }}
-                </span>
-                <input v-model.number="newHome.area" type="text" />
-            </div>
+            <app-form-element
+                :error="newHome.errors.area"
+                v-model="newHome.area"
+                labelText="Area"
+            ></app-form-element>
 
-            <div>
-                <label>City</label>
-                <span v-if="newHome.errors.city" class="error">
-                    {{ newHome.errors.city }}
-                </span>
-                <input v-model="newHome.city" type="text" />
-            </div>
+            <app-form-element
+                :error="newHome.errors.city"
+                v-model="newHome.city"
+                labelText="City"
+            ></app-form-element>
 
-            <div>
-                <label>Post Code</label>
-                <span v-if="newHome.errors.code" class="error">
-                    {{ newHome.errors.code }}
-                </span>
-                <input v-model="newHome.code" type="text" />
-            </div>
+            <app-form-element
+                :error="newHome.errors.code"
+                v-model="newHome.code"
+                labelText="Post Code"
+            ></app-form-element>
 
-            <div>
-                <label>Street</label>
-                <span v-if="newHome.errors.street" class="error">
-                    {{ newHome.errors.street }}
-                </span>
-                <input v-model="newHome.street" type="text" />
-            </div>
+            <app-form-element
+                :error="newHome.errors.street"
+                v-model="newHome.street"
+                labelText="Street"
+            ></app-form-element>
 
-            <div>
-                <label>Street Nr</label>
-                <span v-if="newHome.errors.street_nr" class="error">
-                    {{ newHome.errors.street_nr }}
-                </span>
-                <input v-model.number="newHome.street_nr" type="text" />
-            </div>
+            <app-form-element
+                :error="newHome.errors.street_nr"
+                v-model="newHome.street_nr"
+                labelText="Street nr"
+            ></app-form-element>
 
-            <div>
-                <label>Price</label>
-                <span v-if="newHome.errors.price" class="error">
-                    {{ newHome.errors.price }}
-                </span>
-                <input v-model.number="newHome.price" type="text" />
-            </div>
+            <app-form-element
+                :error="newHome.errors.price"
+                v-model="newHome.price"
+                labelText="Price"
+            ></app-form-element>
 
-            <div>
-                <button type="submit">Create</button>
+            <div class="flex justify-center">
+                <button type="submit" class="btn-primary">Create</button>
             </div>
         </div>
     </form>
@@ -74,6 +58,7 @@
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";
+import AppFormElement from "@/Components/UI/AppFormElement.vue";
 
 const newHome = useForm({
     beds: 0,
