@@ -35,5 +35,5 @@ Route::post('login', [AuthController::class, 'store'])
 Route::delete('logout', [AuthController::class, 'destroy'])
     ->name('logout');
 
-Route::get('register', [UserAccountController::class, 'create'])
-    ->name('register');
+Route::resource('user-account', UserAccountController::class)
+    ->only(['create', 'store']);

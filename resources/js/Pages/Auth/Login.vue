@@ -19,7 +19,7 @@
         </div>
     </form>
     <div class="flex">
-        <Link :href="route('register')" class="btn-primary mx-auto"
+        <Link :href="route('user-account.create')" class="btn-primary mx-auto"
             >Register</Link
         >
     </div>

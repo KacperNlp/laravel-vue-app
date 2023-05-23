@@ -5,8 +5,8 @@
     >
         <app-form-element
             labelText="Username"
-            :error="registerForm.errors.username"
-            v-model="registerForm.username"
+            :error="registerForm.errors.name"
+            v-model="registerForm.name"
         ></app-form-element>
         <app-form-element
             labelText="Emai"
@@ -41,13 +41,13 @@ import AppFormElement from "@/Components/UI/AppFormElement.vue";
 import { useForm, Link } from "@inertiajs/vue3";
 
 const registerForm = useForm({
-    username: null,
+    name: null,
     email: null,
     password: null,
     password_confirmation: null,
 });
 
 const submit = () => {
-    registerForm.post("");
+    registerForm.post(route("user-account.store"));
 };
 </script>

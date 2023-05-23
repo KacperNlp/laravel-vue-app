@@ -57,7 +57,10 @@
         </div>
     </header>
     <main class="container mx-auto px-5 md:px-0">
-        <div v-if="isVisible" class="success">
+        <div
+            v-if="isVisible"
+            class="bg-green-100 border border-green-500 px-4 py-2 rounded-md"
+        >
             {{ successMessage }}
         </div>
         <slot />
