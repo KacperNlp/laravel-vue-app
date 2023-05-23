@@ -10,6 +10,7 @@
         ></app-form-element>
         <app-form-element
             labelText="Password"
+            inputType="password"
             :error="loginForm.errors.password"
             v-model="loginForm.password"
         ></app-form-element>

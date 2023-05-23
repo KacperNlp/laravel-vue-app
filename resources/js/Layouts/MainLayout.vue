@@ -22,6 +22,29 @@
                     class="font-medium hover:text-indigo-400 dark:hover:text-indigo-600"
                     >{{ navEl.text }}</Link
                 >
+                <Link
+                    v-if="user"
+                    :href="route('listing.create')"
+                    @click="toggleNavForMobile"
+                    class="font-medium hover:text-indigo-400 dark:hover:text-indigo-600"
+                    >Sell home</Link
+                >
+                <p v-if="user">{{ user.name }}</p>
+                <Link
+                    v-if="user"
+                    :href="route('logout')"
+                    method="delete"
+                    as="button"
+                    class="font-medium hover:text-indigo-400 dark:hover:text-indigo-600"
+                    >Logout</Link
+                >
+                <Link
+                    v-else
+                    :href="route('login')"
+                    @click="toggleNavForMobile"
+                    class="font-medium hover:text-indigo-400 dark:hover:text-indigo-600"
+                    >Sign-in</Link
+                >
             </nav>
             <button
                 @click="toggleNavForMobile"
@@ -66,14 +89,10 @@ const navigationElements = reactive([
         link: route("listing.index"),
         id: 3,
     },
-    {
-        text: "Sell home",
-        link: route("listing.create"),
-        id: 4,
-    },
 ]);
 
 const successMessage = computed(() => page.props.flash.success);
+const user = computed(() => page.props.user);
 
 onUpdated(() => {
     isVisible.value = !isVisible.value ? !!page.props.flash.success : false;

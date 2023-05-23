@@ -19,7 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/hello', [IndexController::class, 'show']);
 
-Route::resource('listing', ListingsController::class);
+Route::resource('listing', ListingsController::class)
+    ->only(['create', 'store', 'destroy', 'edit', 'update'])->middleware('auth');
+
+Route::resource('listing', ListingsController::class)
+    ->except(['create', 'store', 'destroy', 'edit', 'update']);
 
 Route::get('login', [AuthController::class, 'create'])
     ->name('login');
@@ -27,5 +31,5 @@ Route::get('login', [AuthController::class, 'create'])
 Route::post('login', [AuthController::class, 'store'])
     ->name('login.store');
 
-Route::post('logout', [AuthController::class, 'destroy'])
+Route::delete('logout', [AuthController::class, 'destroy'])
     ->name('logout');
