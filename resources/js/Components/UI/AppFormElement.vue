@@ -9,7 +9,7 @@
         <input
             :value="modelValue"
             @input="$emit('update:modelValue', $event.target.value)"
-            type="text"
+            :type="inputType"
             class="form-input"
         />
     </div>
@@ -29,6 +29,10 @@ const props = defineProps({
     modelValue: {
         type: String,
         required: true,
+    },
+    inputType: {
+        type: String,
+        default: "text",
     },
 });
 </script>
