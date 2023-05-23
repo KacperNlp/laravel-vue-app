@@ -11,11 +11,15 @@
         <p>
             Price: <strong><app-price :price="home.price"></app-price></strong>
         </p>
+        <p class="text-xs mt-1">
+            Monthly: <app-price :price="getMonthlyPayment"></app-price>
+        </p>
     </div>
 </template>
 
 <script setup>
 import AppPrice from "@/Components/UI/AppPrice.vue";
+import { userMonthlyPayment } from "@/Composables/useMonthlyPayment.js";
 
 const props = defineProps({
     home: {
@@ -23,4 +27,12 @@ const props = defineProps({
         required: true,
     },
 });
+
+const rate = 2.5;
+const duration = 25;
+const { getMonthlyPayment } = userMonthlyPayment(
+    props.home.price,
+    rate,
+    duration
+);
 </script>

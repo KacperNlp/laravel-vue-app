@@ -27,7 +27,8 @@
                 </app-card>
                 <app-card>
                     <template #header>
-                        <p class="mb-4">Make an offer</p>
+                        <p class="mb-4">Monthly Payment</p>
+                        <app-rate :price="home.price"></app-rate>
                     </template>
                 </app-card>
             </div>
@@ -40,6 +41,7 @@
 import { Link } from "@inertiajs/vue3";
 import AppCard from "@/Components/UI/AppCard.vue";
 import AppPrice from "@/Components/UI/AppPrice.vue";
+import AppRate from "@/Components/AppRate.vue";
 
 defineProps({
     home: {
