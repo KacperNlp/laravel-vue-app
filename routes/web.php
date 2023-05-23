@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingsController;
+use App\Http\Controllers\UserAccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +34,6 @@ Route::post('login', [AuthController::class, 'store'])
 
 Route::delete('logout', [AuthController::class, 'destroy'])
     ->name('logout');
+
+Route::get('register', [UserAccountController::class, 'create'])
+    ->name('register');

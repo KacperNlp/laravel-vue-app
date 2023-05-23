@@ -10,7 +10,6 @@ class AuthController extends Controller
 {
     public function create()
     {
-        dd('Hello there');
         return inertia('Auth/Login');
     }
 

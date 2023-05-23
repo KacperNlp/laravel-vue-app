@@ -1,7 +1,7 @@
 <template>
     <form
         @submit.prevent="submit"
-        class="max-w-xl px-4 mx-auto my-16 flex flex-col gap-4"
+        class="max-w-xl px-4 mx-auto mt-16 mb-2 flex flex-col gap-4"
     >
         <app-form-element
             labelText="Email (username)"
@@ -18,18 +18,21 @@
             <button type="submit" class="btn-primary mx-auto">Login</button>
         </div>
     </form>
+    <div class="flex">
+        <Link :href="route('register')" class="btn-primary mx-auto"
+            >Register</Link
+        >
+    </div>
 </template>
 
 <script setup>
 import AppFormElement from "@/Components/UI/AppFormElement.vue";
-import { useForm } from "@inertiajs/vue3";
+import { Link, useForm } from "@inertiajs/vue3";
 
 const loginForm = useForm({
     email: null,
     password: null,
 });
-
-console.log(loginForm);
 
 const submit = () => {
     loginForm.post(route("login.store"));
