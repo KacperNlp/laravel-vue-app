@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listings;
+use Auth;
 use Illuminate\Http\Request;
 
 use function GuzzleHttp\Promise\all;
@@ -44,7 +45,7 @@ class ListingsController extends Controller
      */
     public function store(Request $request)
     {
-        Listings::create(
+        $request->user()->listings()->create(
             $request->validate([
                 'beds' => 'required|integer|min:1|max:20',
                 'baths' => 'required|integer|min:1|max:20',
@@ -70,6 +71,8 @@ class ListingsController extends Controller
     public function show($id)
     {
         $home = Listings::find($id);
+        $this->authorize('view', $home);
+
         return inertia(
             'Listing/Show',
             [
@@ -87,6 +90,8 @@ class ListingsController extends Controller
     public function edit($id)
     {
         $home = Listings::find($id);
+        $this->authorize('update', $home);
+
         return inertia(
             'Listing/Edit',
             [
@@ -105,6 +110,7 @@ class ListingsController extends Controller
     public function update(Request $request, $id)
     {
         $homeToUopdate = Listings::find($id);
+        $this->authorize('update', $homeToUopdate);
 
         $homeToUopdate->update(
             $request->validate([
@@ -131,7 +137,10 @@ class ListingsController extends Controller
      */
     public function destroy($id)
     {
-        Listings::where('id', $id)->delete();
+        $homeToDelete = Listings::find($id);
+        $this->authorize('delete', $homeToDelete);
+
+        $homeToDelete->delete();
         return redirect()->back()
             ->with('success', 'Offer was deleted!');
     }
