@@ -17,12 +17,12 @@ class ListingsController extends Controller
      */
     public function index()
     {
-        $allHomes = Listings::all();
+        $homes = Listings::orderByDesc('created_at')->paginate(12);
 
         return inertia(
             'Listing/Index',
             [
-                "homes" => $allHomes
+                "homes" => $homes
             ]
         );
     }

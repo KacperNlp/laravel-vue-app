@@ -53,7 +53,7 @@ class ListingsPolicy
      */
     public function update(User $user, Listings $listings)
     {
-        return $user->id === $listings->by_user_id;
+        return $this->isAbleToDoSomething($user, $listings);
     }
 
     /**
@@ -65,7 +65,7 @@ class ListingsPolicy
      */
     public function delete(User $user, Listings $listings)
     {
-        return $user->id === $listings->by_user_id;
+        return $this->isAbleToDoSomething($user, $listings);
     }
 
     /**
@@ -90,5 +90,13 @@ class ListingsPolicy
     public function forceDelete(User $user, Listings $listings)
     {
         return $user->id === $listings->by_user_id;
+    }
+
+    private function isAbleToDoSomething(User $user, Listings $listings): bool
+    {
+        $isAuthor = $user->id === $listings->by_user_id;
+        $canDoSomething = $user->is_admin || $isAuthor;
+
+        return $canDoSomething;
     }
 }
