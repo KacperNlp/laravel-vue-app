@@ -8,14 +8,26 @@
     }
 
     .form-input {
-        @apply border-gray-300 rounded-md;
-      }
+      @apply border-gray-300 rounded-md;
+    }
 
     .btn-primary {
-        @apply inline-block mt-8 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-sm text-gray-100 duration-300;
+      @apply inline-block mt-8 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-sm text-gray-100 duration-300;
     }
 
     .range-input {
-        @apply w-2/3 h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer;
+      @apply w-2/3 h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer;
+    }
+
+    .filter-grid {
+      @apply flex gap-1;
+    }
+
+    .filter-input-left {
+      @apply border-gray-300 placeholder-gray-400;
+    }
+
+    .filter-input-right {
+      @apply border-gray-300 placeholder-gray-400
     }
   }

@@ -1,10 +1,6 @@
 <template>
     <div class="mb-12">
-        <h1
-            class="mt-8 mb-8 text-2xl font-bold text-gray-500 dark:text-gray-400"
-        >
-            All homes for sale:
-        </h1>
+        <app-filters class="mb-12 mt-16"></app-filters>
         <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             <li v-for="home in homes.data" @key="home.id">
                 <app-card>
@@ -36,6 +32,7 @@ import { Link } from "@inertiajs/vue3";
 import AppHomeInfo from "@/Components/AppHomeInfo.vue";
 import AppCard from "@/Components/UI/AppCard.vue";
 import AppPagination from "@/Components/UI/AppPagination.vue";
+import AppFilters from "@/Components/AppFilters.vue";
 
 const props = defineProps({
     homes: {
