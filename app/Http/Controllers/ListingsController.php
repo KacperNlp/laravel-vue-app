@@ -17,13 +17,41 @@ class ListingsController extends Controller
      */
     public function index(Request $request)
     {
-        $homes = Listings::orderByDesc('created_at')->paginate(12)->withQueryString();
+        $query = Listings::orderByDesc('created_at');
+        $filters = $request->only(['priceFrom', 'priceTo', 'beds', 'baths', 'areaFrom', 'areaTo']);
+
+        $query->when(
+            $filters['priceFrom'] ?? false,
+            fn ($query, $value) => $query->where('price', '>=', $value)
+        )
+            ->when(
+                $filters['priceTo'] ?? false,
+                fn ($query, $value) => $query->where('price', '<=', $value)
+            )
+            ->when(
+                $filters['beds'] ?? false,
+                fn ($query, $value) => $query->where('beds', (int)$value < 6 ? '=' : '>=', $value)
+            )
+            ->when(
+                $filters['baths'] ?? false,
+                fn ($query, $value) => $query->where('baths', (int)$value < 6 ? '=' : '>=', $value)
+            )
+            ->when(
+                $filters['areaFrom'] ?? false,
+                fn ($query, $value) => $query->where('baths', '>=', $value)
+            )
+            ->when(
+                $filters['areaTo'] ?? false,
+                fn ($query, $value) => $query->where('baths', '<=', $value)
+            );
+
+
 
         return inertia(
             'Listing/Index',
             [
-                "homes" => $homes,
-                "filters" => $request->only('priceFrom', 'priceTo', 'beds', 'bath', 'areaFrom', 'areaTo')
+                "homes" => $query->paginate(12)->withQueryString(),
+                "filters" => $filters
             ]
         );
     }
