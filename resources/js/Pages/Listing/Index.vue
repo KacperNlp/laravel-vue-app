@@ -1,6 +1,6 @@
 <template>
     <div class="mb-12">
-        <app-filters class="mb-12 mt-16"></app-filters>
+        <app-filters :filters="filters" class="mb-12 mt-16"></app-filters>
         <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             <li v-for="home in homes.data" @key="home.id">
                 <app-card>
@@ -40,6 +40,7 @@ const props = defineProps({
         required: true,
         default: { data: [], links: [] },
     },
+    filters: Object,
 });
 
 const isPaginationRequired = computed(() => props.homes.links.length > 1);

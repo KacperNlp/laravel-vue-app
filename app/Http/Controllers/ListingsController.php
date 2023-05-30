@@ -15,14 +15,15 @@ class ListingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $homes = Listings::orderByDesc('created_at')->paginate(12);
+        $homes = Listings::orderByDesc('created_at')->paginate(12)->withQueryString();
 
         return inertia(
             'Listing/Index',
             [
-                "homes" => $homes
+                "homes" => $homes,
+                "filters" => $request->only('priceFrom', 'priceTo', 'beds', 'bath', 'areaFrom', 'areaTo')
             ]
         );
     }
