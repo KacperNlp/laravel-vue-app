@@ -29,15 +29,18 @@
                     class="font-medium hover:text-indigo-400 dark:hover:text-indigo-600"
                     >Sell home</Link
                 >
-                <p v-if="user">{{ user.name }}</p>
-                <Link
-                    v-if="user"
-                    :href="route('logout')"
-                    method="delete"
-                    as="button"
-                    class="font-medium hover:text-indigo-400 dark:hover:text-indigo-600"
-                    >Logout</Link
-                >
+                <Link v-if="user" :href="route('realtor.listing.index')">{{
+                    user.name
+                }}</Link>
+                <div v-if="user">
+                    <Link
+                        :href="route('logout')"
+                        method="delete"
+                        as="button"
+                        class="font-medium hover:text-indigo-400 dark:hover:text-indigo-600"
+                        >Logout</Link
+                    >
+                </div>
                 <Link
                     v-else
                     :href="route('login')"
